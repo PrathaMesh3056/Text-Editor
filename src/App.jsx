@@ -1,7 +1,7 @@
 import Navbar from './navbar.jsx';
 import TextArea from './TextArea.jsx';
 import React, { useState } from 'react';
-import Alert from './alert.jsx';
+import Alert from './Alert.jsx';
 import About from './About.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
