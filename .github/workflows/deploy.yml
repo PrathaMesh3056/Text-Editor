@@ -29,7 +29,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-  steps:
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Node.js
@@ -37,7 +37,6 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-      # Add this step to bust the cache
       - name: Cache Bust
         run: echo "Cache bust value $(date)" > .cache-bust
       - name: Install dependencies
@@ -54,4 +53,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        #1
