@@ -146,7 +146,7 @@ function TextEditor({ showAlert, theme }) {
               <div>
                   <div className="button-group-label">AI & Research</div>
                   <div className="d-flex flex-wrap gap-2">
-                      <button className="btn btn-ai fw-semibold" onClick={() => handleAiAction('summarize')} disabled={isAiLoading}>{isAiLoading ? 'Working...' : 'Summarize'}</button>
+                      <button className="btn btn-ai fw-semibold " onClick={() => handleAiAction('summarize')} disabled={isAiLoading}>{isAiLoading ? 'Working...' : 'Summarize'}</button>
                       <button className="btn btn-ai fw-semibold" onClick={() => handleAiAction('improve')} disabled={isAiLoading}>{isAiLoading ? 'Working...' : 'Improve Text'}</button>
                       <button className="btn btn-ai fw-semibold" onClick={() => handleAiAction('formatCitation')} disabled={isAiLoading}>{isAiLoading ? 'Working...' : 'Format Citation'}</button>
                       <button className="btn btn-outline-ai fw-semibold" onClick={findSource} disabled={isAiLoading}>Find Source</button>
