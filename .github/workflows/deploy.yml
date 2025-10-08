@@ -41,9 +41,8 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # This should be the directory where your build command outputs the static files.
-          # For Create React App, this is 'build'. For Vite, it is 'dist'.
-          path: './build' # <-- IMPORTANT: Change to './dist' if you are using Vite
+          # The path to the folder to upload
+          path: './dist' # <-- Change to 'dist' # <-- IMPORTANT: Change to './dist' if you are using Vite
 
   # This job deploys the application
   deploy:
