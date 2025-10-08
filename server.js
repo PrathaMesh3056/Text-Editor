@@ -1,8 +1,16 @@
-// api/generate.js
+// server.js
+import express from 'express';
+import cors from 'cors';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+// --- Initialization ---
+const app = express();
+const PORT = process.env.PORT || 3001; // Render provides the PORT env var
 
 // Get the API key from environment variables
+if (!process.env.GEMINI_API_KEY) {
+  throw new Error("GEMINI_API_KEY environment variable is not set.");
+}
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Define the prompts for the AI
@@ -11,11 +19,12 @@ const prompts = {
   improve: "Proofread and improve the following text for clarity, grammar, and style, while preserving its original meaning:",
 };
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
-  
+// --- Middleware ---
+app.use(cors()); // Enable CORS for all routes
+app.use(express.json()); // Middleware to parse JSON bodies
+
+// --- Routes ---
+app.post('/api/generate', async (req, res) => {
   try {
     const { text, action } = req.body;
 
@@ -36,4 +45,9 @@ export default async function handler(req, res) {
     console.error('Error calling Gemini API:', error);
     return res.status(500).json({ error: 'Failed to generate content from AI' });
   }
-}
+});
+
+// --- Server Activation ---
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

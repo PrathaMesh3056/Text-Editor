@@ -43,14 +43,30 @@ function TextEditor({ showAlert, theme }) {
   const readingTime = (txt) => { const words = txt.trim().split(/\s+/).filter(Boolean).length; const minutes = words / 200; return `${Math.ceil(minutes)} min`; };
   
   // --- New AI Handler Function ---
+  // TextEditor.jsx
+// ... (imports and other functions are the same)
+
+  // --- Update the AI Handler Function ---
   const handleAiAction = async (action) => {
     if (!text.trim()) {
       showAlert("Please enter some text first", "warning");
       return;
     }
     setIsAiLoading(true);
+    
+    // Use the environment variable for the API URL
+    const apiUrl = import.meta.env.VITE_API_URL;
+    
+    if (!apiUrl) {
+      console.error("VITE_API_URL is not set. Please check your environment variables.");
+      showAlert("API URL is not configured.", "danger");
+      setIsAiLoading(false);
+      return;
+    }
+    
     try {
-      const response = await fetch('/api/generate', {
+      // The fetch URL is now the full backend URL
+      const response = await fetch(`${apiUrl}/api/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text, action }),
@@ -70,7 +86,8 @@ function TextEditor({ showAlert, theme }) {
       setIsAiLoading(false);
     }
   };
-
+  
+// ... (the rest of your component's JSX is the same)
   return (
     <div className="card shadow-sm">
       <div className="card-body">
