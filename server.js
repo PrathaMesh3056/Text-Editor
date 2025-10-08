@@ -39,7 +39,7 @@ app.post('/api/generate', async (req, res) => {
       return res.status(400).json({ error: 'Invalid request body' });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     const fullPrompt = `${prompts[action]}\n\n---\n\n${text}`;
     
     const result = await model.generateContent(fullPrompt);
