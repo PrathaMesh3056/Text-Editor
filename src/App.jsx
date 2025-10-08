@@ -33,8 +33,12 @@ function App() {
   return (
     <>
       <Navbar onNavigate={setPage} currentPage={page} theme={theme} onThemeChange={toggleTheme} />
-      <div className="container my-4">
+
+      <div className="alert-container">
         <Alert alert={alert} />
+      </div>
+
+      <div className="container my-4">
         {page === "editor" ? (
           <TextEditor showAlert={showAlert} theme={theme} />
         ) : (
