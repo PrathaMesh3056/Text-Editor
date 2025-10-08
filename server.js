@@ -24,6 +24,13 @@ app.use(cors()); // Enable CORS for all routes
 app.use(express.json()); // Middleware to parse JSON bodies
 
 // --- Routes ---
+
+// ✨ New Health Check Route ✨
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'API is healthy' });
+});
+
+// Main AI generation route
 app.post('/api/generate', async (req, res) => {
   try {
     const { text, action } = req.body;
