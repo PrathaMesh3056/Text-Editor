@@ -1,104 +1,85 @@
- /* index.css - add to your existing file or replace if you want these themes */
+ /* index.css */
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Source+Code+Pro&display=swap');
+
+:root {
+  --border-radius: 12px;
+  --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-danger: #dc3545;
+  --ai-color: #4f46e5;
+  --font-sans-serif: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-monospace: 'Source Code Pro', monospace;
+}
 
 body {
-  transition: background-color 0.25s ease, color 0.25s ease;
+  font-family: var(--font-sans-serif);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Card styling */
-.card {
-  border-radius: 12px;
+/* --- THEME DEFINITIONS --- */
+.theme-light { background-color: #f8f9fa; color: #212529; }
+.theme-light .card, .theme-light .modal-content, .theme-light .navbar { background-color: #ffffff; }
+.theme-dark { background-color: #121212; color: #e0e0e0; }
+.theme-dark .card, .theme-dark .modal-content, .theme-dark .navbar { background-color: #1e1e1e; border: 1px solid #333; }
+.theme-dark .btn-close { filter: invert(1); }
+.theme-dark .text-muted { color: #888 !important; }
+.theme-ocean { background-color: #e6f7ff; color: #034c7c; }
+.theme-forest { background-color: #f0fff4; color: #1e4620; }
+.theme-sunset { background-color: #fff8f0; color: #6e440e; }
+.theme-ocean .card, .theme-ocean .modal-content, .theme-ocean .navbar,
+.theme-forest .card, .theme-forest .modal-content, .theme-forest .navbar,
+.theme-sunset .card, .theme-sunset .modal-content, .theme-sunset .navbar { background-color: #ffffff; }
+
+
+/* --- COMPONENT STYLES --- */
+.card { border-radius: var(--border-radius); border: none; }
+.navbar { box-shadow: var(--shadow-sm); }
+.editor-textarea { font-family: var(--font-monospace); font-size: 1rem; padding: 1rem; }
+
+/* --- BUTTON SYSTEM --- */
+.btn {
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
 }
-
-/* Themes */
-.theme-light {
-  background: #f8f9fa;
-  color: #212529;
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
-
-.theme-dark {
-  background: #0b0b0b;
-  color: #e9ecef;
+.btn-secondary { background-color: #5a6572; border-color: #5a6572; }
+.btn-secondary:hover { background-color: #49525c; border-color: #49525c; }
+.btn-ai { background-color: var(--ai-color); border-color: var(--ai-color); color: white; }
+.btn-ai:hover { background-color: #4338ca; border-color: #4338ca; }
+.btn-outline-ai { color: var(--ai-color); border-color: var(--ai-color); }
+.btn-outline-ai:hover { background-color: var(--ai-color); color: white; }
+.button-group-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6c757d;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
+.theme-dark .button-group-label { color: #aaa; }
 
-.theme-dark .card {
-  background: #131313;
-  color: #e9ecef;
-  border: 1px solid rgba(255,255,255,0.03);
-}
 
-.theme-ocean {
-  background: linear-gradient(180deg,#e6f2ff 0,#f7fbff 100%);
-  color: #05386b;
-}
-
-.theme-forest {
-  background: linear-gradient(180deg,#eafaf1 0,#fbfffb 100%);
-  color: #0b3d2e;
-}
-
-.theme-sunset {
-  background: linear-gradient(180deg,#fff4e6 0,#fffaf6 100%);
-  color: #5a2a00;
-}
-
-/* Small responsive niceties */
-textarea.form-control {
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-}
-
-/* index.css - add to your existing file or replace if you want these themes */
-
-body {
-  transition: background-color 0.25s ease, color 0.25s ease;
-}
-
-/* Card styling */
-.card {
-  border-radius: 12px;
-}
-
-/* Themes */
-.theme-light {
-  background: #f8f9fa;
-  color: #212529;
-}
-
-.theme-dark {
-  background: #0b0b0b;
-  color: #e9ecef;
-}
-
-.theme-dark .card {
-  background: #131313;
-  color: #e9ecef;
-  border: 1px solid rgba(255,255,255,0.03);
-}
-
-.theme-ocean {
-  background: linear-gradient(180deg,#e6f2ff 0,#f7fbff 100%);
-  color: #05386b;
-}
-
-.theme-forest {
-  background: linear-gradient(180deg,#eafaf1 0,#fbfffb 100%);
-  color: #0b3d2e;
-}
-
-.theme-sunset {
-  background: linear-gradient(180deg,#fff4e6 0,#fffaf6 100%);
-  color: #5a2a00;
-}
-
-/* Small responsive niceties */
-textarea.form-control {
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-}
-
-/* Add these new styles for the alert container */
+/* --- MODAL & ALERT STYLES --- */
 .alert-container {
   position: fixed;
-  top: 20px;
+  top: 80px;
   right: 20px;
-  z-index: 1050; /* Ensures it's above most other content */
-  min-width: 300px; /* Optional: gives the alert a consistent width */
+  z-index: 1050;
+  min-width: 350px;
 }
+.modal-content { border-radius: var(--border-radius); border: none; box-shadow: var(--shadow-lg); }
+.modal-backdrop.show {
+  --bs-backdrop-opacity: 0.7;
+  backdrop-filter: blur(4px);
+}
+.citation-block { margin-bottom: 1rem; }
+.citation-block strong { color: var(--ai-color); }

@@ -2,10 +2,11 @@
 import React from "react";
 
 function Navbar({ onNavigate, currentPage, theme, onThemeChange }) {
+  // UPDATED: Added "shadow-sm" class for a subtle lift
   return (
-    <nav className={`navbar navbar-expand-lg navbar-${theme === "dark" ? "dark" : "light"} bg-${theme === "dark" ? "dark" : "light"}`}>
+    <nav className={`navbar navbar-expand-lg navbar-${theme === "dark" ? "dark" : "light"} bg-${theme === "dark" ? "dark" : "light"} shadow-sm`}>
       <div className="container">
-        <a className="navbar-brand" href="#" onClick={(e) => { e.preventDefault(); onNavigate("editor"); }}>
+        <a className="navbar-brand fw-bold" href="#" onClick={(e) => { e.preventDefault(); onNavigate("editor"); }}>
           Synapse Editor
         </a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
