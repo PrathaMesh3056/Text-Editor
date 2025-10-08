@@ -1,15 +1,15 @@
+// Alert.jsx
 import React from "react";
 
+function Alert({ alert }) {
+  if (!alert) return null;
 
-function Alert(props){
-
-    return (
-props.alert && <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert ">
-<strong>{props.alert.type}</strong>: {props.alert.mssg}
-
-
-</div>
-    );
-
+  return (
+    <div className={`alert alert-${alert.type} alert-dismissible fade show`} role="alert">
+      <strong className="me-1">{alert.type.toUpperCase()}</strong>
+      {alert.mssg}
+    </div>
+  );
 }
-export default Alert
+
+export default Alert;

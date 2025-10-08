@@ -1,57 +1,48 @@
-import Navbar from './navbar.jsx';
-import TextArea from './TextArea.jsx';
-import React, { useState } from 'react';
-import Alert from './Alert.jsx';
-import About from './About.jsx';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// App.jsx
+import React, { useState } from "react";
+import Navbar from "./Navbar";
+import TextEditor from "./TextEditor";
+import About from "./About";
+import Alert from "./Alert";
+import Footer from "./Footer";
 
 function App() {
-  const [mode, setMode] = useState('light');
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "light"
+  );
   const [alert, setAlert] = useState(null);
+  const [page, setPage] = useState("editor"); // "editor" or "about"
 
-  const showalert = (message, type) => {
-    setAlert({ mssg: message, type: type });
-    setTimeout(() => setAlert(null), 3000);
+  const showAlert = (mssg, type = "success") => {
+    setAlert({ mssg, type });
+    setTimeout(() => setAlert(null), 2500);
   };
 
-  const [myStyle, setMyStyle] = useState({
-    color: 'black',
-    backgroundColor: 'white',
-  });
-
-  const [btntext, setBtntext] = useState('Enable Dark Mode');
-
-  const togglecolor = () => {
-    if (mode === 'light') {
-      setMode('dark');
-      setMyStyle({ color: 'white', backgroundColor: 'black' });
-      document.body.style.backgroundColor = 'black';
-      document.body.style.color = 'white';
-      showalert('Dark mode enabled', 'success');
-      setBtntext('Enable Light Mode');
-    } else {
-      setMode('light');
-      setMyStyle({ color: 'black', backgroundColor: 'white' });
-      document.body.style.backgroundColor = 'white';
-      document.body.style.color = 'black';
-      showalert('Light mode enabled', 'success');
-      setBtntext('Enable Dark Mode');
-    }
+  const toggleTheme = (newTheme) => {
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    showAlert(`Theme set to ${newTheme}`, "info");
   };
+
+  // apply theme class on body
+  React.useEffect(() => {
+    document.body.className = "";
+    document.body.classList.add(`theme-${theme}`);
+  }, [theme]);
 
   return (
-    <Router>
-      <Navbar myStyle={myStyle} mode={mode} togglecolor={togglecolor} btntext={btntext} />
-      <Alert alert={alert} />
-      <div className='container'>
-        <Routes>
-          <Route path="/" element={<TextArea />} />
-
-          <Route path="/about" element={<About />} />
-          <Route path="/home" element={<TextArea />} />
-        </Routes>
+    <>
+      <Navbar onNavigate={setPage} currentPage={page} theme={theme} onThemeChange={toggleTheme} />
+      <div className="container my-4">
+        <Alert alert={alert} />
+        {page === "editor" ? (
+          <TextEditor showAlert={showAlert} theme={theme} />
+        ) : (
+          <About />
+        )}
       </div>
-    </Router>
+      <Footer />
+    </>
   );
 }
 

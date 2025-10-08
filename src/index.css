@@ -1,1 +1,47 @@
- 
+ /* index.css - add to your existing file or replace if you want these themes */
+
+body {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Card styling */
+.card {
+  border-radius: 12px;
+}
+
+/* Themes */
+.theme-light {
+  background: #f8f9fa;
+  color: #212529;
+}
+
+.theme-dark {
+  background: #0b0b0b;
+  color: #e9ecef;
+}
+
+.theme-dark .card {
+  background: #131313;
+  color: #e9ecef;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.theme-ocean {
+  background: linear-gradient(180deg,#e6f2ff 0,#f7fbff 100%);
+  color: #05386b;
+}
+
+.theme-forest {
+  background: linear-gradient(180deg,#eafaf1 0,#fbfffb 100%);
+  color: #0b3d2e;
+}
+
+.theme-sunset {
+  background: linear-gradient(180deg,#fff4e6 0,#fffaf6 100%);
+  color: #5a2a00;
+}
+
+/* Small responsive niceties */
+textarea.form-control {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
